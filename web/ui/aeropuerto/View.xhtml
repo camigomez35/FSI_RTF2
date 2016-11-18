@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewAeropuertoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewAeropuertoLabel_codigo}"/>
+                    <h:outputText value="#{aeropuertoController.selected.codigo}" title="#{bundle.ViewAeropuertoTitle_codigo}"/>
+                    <h:outputText value="#{bundle.ViewAeropuertoLabel_nombre}"/>
+                    <h:outputText value="#{aeropuertoController.selected.nombre}" title="#{bundle.ViewAeropuertoTitle_nombre}"/>
+                    <h:outputText value="#{bundle.ViewAeropuertoLabel_impuestoAeroportuario}"/>
+                    <h:outputText value="#{aeropuertoController.selected.impuestoAeroportuario}" title="#{bundle.ViewAeropuertoTitle_impuestoAeroportuario}"/>
+                    <h:outputText value="#{bundle.ViewAeropuertoLabel_costoPlataforma}"/>
+                    <h:outputText value="#{aeropuertoController.selected.costoPlataforma}" title="#{bundle.ViewAeropuertoTitle_costoPlataforma}"/>
+                    <h:outputText value="#{bundle.ViewAeropuertoLabel_categoria}"/>
+                    <h:outputText value="#{aeropuertoController.selected.categoria}" title="#{bundle.ViewAeropuertoTitle_categoria}"/>
+                    <h:outputText value="#{bundle.ViewAeropuertoLabel_ciudad}"/>
+                    <h:outputText value="#{aeropuertoController.selected.ciudad}" title="#{bundle.ViewAeropuertoTitle_ciudad}"/>
+                    <h:outputText value="#{bundle.ViewAeropuertoLabel_ruta}"/>
+                    <h:outputText value="#{aeropuertoController.selected.ruta}" title="#{bundle.ViewAeropuertoTitle_ruta}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{aeropuertoController.destroyAndView}" value="#{bundle.ViewAeropuertoDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewAeropuertoEditLink}"/>
+                <br />
+                <h:commandLink action="#{aeropuertoController.prepareCreate}" value="#{bundle.ViewAeropuertoCreateLink}" />
+                <br />
+                <h:commandLink action="#{aeropuertoController.prepareList}" value="#{bundle.ViewAeropuertoShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewAeropuertoIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

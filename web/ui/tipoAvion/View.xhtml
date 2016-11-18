@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewTipoAvionTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewTipoAvionLabel_id}"/>
+                    <h:outputText value="#{tipoAvionController.selected.id}" title="#{bundle.ViewTipoAvionTitle_id}"/>
+                    <h:outputText value="#{bundle.ViewTipoAvionLabel_gastoGasolina}"/>
+                    <h:outputText value="#{tipoAvionController.selected.gastoGasolina}" title="#{bundle.ViewTipoAvionTitle_gastoGasolina}"/>
+                    <h:outputText value="#{bundle.ViewTipoAvionLabel_velocidad}"/>
+                    <h:outputText value="#{tipoAvionController.selected.velocidad}" title="#{bundle.ViewTipoAvionTitle_velocidad}"/>
+                    <h:outputText value="#{bundle.ViewTipoAvionLabel_sillasPrimeraClase}"/>
+                    <h:outputText value="#{tipoAvionController.selected.sillasPrimeraClase}" title="#{bundle.ViewTipoAvionTitle_sillasPrimeraClase}"/>
+                    <h:outputText value="#{bundle.ViewTipoAvionLabel_sillasClaseTurista}"/>
+                    <h:outputText value="#{tipoAvionController.selected.sillasClaseTurista}" title="#{bundle.ViewTipoAvionTitle_sillasClaseTurista}"/>
+                    <h:outputText value="#{bundle.ViewTipoAvionLabel_capacidadTanque}"/>
+                    <h:outputText value="#{tipoAvionController.selected.capacidadTanque}" title="#{bundle.ViewTipoAvionTitle_capacidadTanque}"/>
+                    <h:outputText value="#{bundle.ViewTipoAvionLabel_nombre}"/>
+                    <h:outputText value="#{tipoAvionController.selected.nombre}" title="#{bundle.ViewTipoAvionTitle_nombre}"/>
+                    <h:outputText value="#{bundle.ViewTipoAvionLabel_configuracionVueloId}"/>
+                    <h:outputText value="#{tipoAvionController.selected.configuracionVueloId}" title="#{bundle.ViewTipoAvionTitle_configuracionVueloId}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{tipoAvionController.destroyAndView}" value="#{bundle.ViewTipoAvionDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewTipoAvionEditLink}"/>
+                <br />
+                <h:commandLink action="#{tipoAvionController.prepareCreate}" value="#{bundle.ViewTipoAvionCreateLink}" />
+                <br />
+                <h:commandLink action="#{tipoAvionController.prepareList}" value="#{bundle.ViewTipoAvionShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewTipoAvionIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

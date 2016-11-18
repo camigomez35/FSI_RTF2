@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateConfiguracionVueloTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateConfiguracionVueloLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{configuracionVueloController.selected.id}" title="#{bundle.CreateConfiguracionVueloTitle_id}" required="true" requiredMessage="#{bundle.CreateConfiguracionVueloRequiredMessage_id}"/>
+                    <h:outputLabel value="#{bundle.CreateConfiguracionVueloLabel_nombre}" for="nombre" />
+                    <h:inputText id="nombre" value="#{configuracionVueloController.selected.nombre}" title="#{bundle.CreateConfiguracionVueloTitle_nombre}" required="true" requiredMessage="#{bundle.CreateConfiguracionVueloRequiredMessage_nombre}"/>
+                    <h:outputLabel value="#{bundle.CreateConfiguracionVueloLabel_numeroPilotos}" for="numeroPilotos" />
+                    <h:inputText id="numeroPilotos" value="#{configuracionVueloController.selected.numeroPilotos}" title="#{bundle.CreateConfiguracionVueloTitle_numeroPilotos}" required="true" requiredMessage="#{bundle.CreateConfiguracionVueloRequiredMessage_numeroPilotos}"/>
+                    <h:outputLabel value="#{bundle.CreateConfiguracionVueloLabel_numeroCopilotos}" for="numeroCopilotos" />
+                    <h:inputText id="numeroCopilotos" value="#{configuracionVueloController.selected.numeroCopilotos}" title="#{bundle.CreateConfiguracionVueloTitle_numeroCopilotos}" required="true" requiredMessage="#{bundle.CreateConfiguracionVueloRequiredMessage_numeroCopilotos}"/>
+                    <h:outputLabel value="#{bundle.CreateConfiguracionVueloLabel_numeroAzafatas}" for="numeroAzafatas" />
+                    <h:inputText id="numeroAzafatas" value="#{configuracionVueloController.selected.numeroAzafatas}" title="#{bundle.CreateConfiguracionVueloTitle_numeroAzafatas}" required="true" requiredMessage="#{bundle.CreateConfiguracionVueloRequiredMessage_numeroAzafatas}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{configuracionVueloController.create}" value="#{bundle.CreateConfiguracionVueloSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{configuracionVueloController.prepareList}" value="#{bundle.CreateConfiguracionVueloShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateConfiguracionVueloIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

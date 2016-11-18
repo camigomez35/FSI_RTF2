@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewVueloTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewVueloLabel_id}"/>
+                    <h:outputText value="#{vueloController.selected.id}" title="#{bundle.ViewVueloTitle_id}"/>
+                    <h:outputText value="#{bundle.ViewVueloLabel_fechaSalida}"/>
+                    <h:outputText value="#{vueloController.selected.fechaSalida}" title="#{bundle.ViewVueloTitle_fechaSalida}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewVueloLabel_pesoEquipaje}"/>
+                    <h:outputText value="#{vueloController.selected.pesoEquipaje}" title="#{bundle.ViewVueloTitle_pesoEquipaje}"/>
+                    <h:outputText value="#{bundle.ViewVueloLabel_pesoCarga}"/>
+                    <h:outputText value="#{vueloController.selected.pesoCarga}" title="#{bundle.ViewVueloTitle_pesoCarga}"/>
+                    <h:outputText value="#{bundle.ViewVueloLabel_pasajerosEmbarcados}"/>
+                    <h:outputText value="#{vueloController.selected.pasajerosEmbarcados}" title="#{bundle.ViewVueloTitle_pasajerosEmbarcados}"/>
+                    <h:outputText value="#{bundle.ViewVueloLabel_horaLlegada}"/>
+                    <h:outputText value="#{vueloController.selected.horaLlegada}" title="#{bundle.ViewVueloTitle_horaLlegada}">
+                        <f:convertDateTime pattern="HH:mm:ss" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewVueloLabel_incidentes}"/>
+                    <h:outputText value="#{vueloController.selected.incidentes}" title="#{bundle.ViewVueloTitle_incidentes}"/>
+                    <h:outputText value="#{bundle.ViewVueloLabel_costoTotal}"/>
+                    <h:outputText value="#{vueloController.selected.costoTotal}" title="#{bundle.ViewVueloTitle_costoTotal}"/>
+                    <h:outputText value="#{bundle.ViewVueloLabel_horaSalida}"/>
+                    <h:outputText value="#{vueloController.selected.horaSalida}" title="#{bundle.ViewVueloTitle_horaSalida}">
+                        <f:convertDateTime pattern="HH:mm:ss" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewVueloLabel_fechaLlegada}"/>
+                    <h:outputText value="#{vueloController.selected.fechaLlegada}" title="#{bundle.ViewVueloTitle_fechaLlegada}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewVueloLabel_ruta}"/>
+                    <h:outputText value="#{vueloController.selected.ruta}" title="#{bundle.ViewVueloTitle_ruta}"/>
+                    <h:outputText value="#{bundle.ViewVueloLabel_estado}"/>
+                    <h:outputText value="#{vueloController.selected.estado}" title="#{bundle.ViewVueloTitle_estado}"/>
+                    <h:outputText value="#{bundle.ViewVueloLabel_avion}"/>
+                    <h:outputText value="#{vueloController.selected.avion}" title="#{bundle.ViewVueloTitle_avion}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{vueloController.destroyAndView}" value="#{bundle.ViewVueloDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewVueloEditLink}"/>
+                <br />
+                <h:commandLink action="#{vueloController.prepareCreate}" value="#{bundle.ViewVueloCreateLink}" />
+                <br />
+                <h:commandLink action="#{vueloController.prepareList}" value="#{bundle.ViewVueloShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewVueloIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

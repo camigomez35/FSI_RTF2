@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditAeropuertoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditAeropuertoLabel_codigo}" for="codigo" />
+                    <h:inputText id="codigo" value="#{aeropuertoController.selected.codigo}" title="#{bundle.EditAeropuertoTitle_codigo}" required="true" requiredMessage="#{bundle.EditAeropuertoRequiredMessage_codigo}"/>
+                    <h:outputLabel value="#{bundle.EditAeropuertoLabel_nombre}" for="nombre" />
+                    <h:inputText id="nombre" value="#{aeropuertoController.selected.nombre}" title="#{bundle.EditAeropuertoTitle_nombre}" required="true" requiredMessage="#{bundle.EditAeropuertoRequiredMessage_nombre}"/>
+                    <h:outputLabel value="#{bundle.EditAeropuertoLabel_impuestoAeroportuario}" for="impuestoAeroportuario" />
+                    <h:inputText id="impuestoAeroportuario" value="#{aeropuertoController.selected.impuestoAeroportuario}" title="#{bundle.EditAeropuertoTitle_impuestoAeroportuario}" required="true" requiredMessage="#{bundle.EditAeropuertoRequiredMessage_impuestoAeroportuario}"/>
+                    <h:outputLabel value="#{bundle.EditAeropuertoLabel_costoPlataforma}" for="costoPlataforma" />
+                    <h:inputText id="costoPlataforma" value="#{aeropuertoController.selected.costoPlataforma}" title="#{bundle.EditAeropuertoTitle_costoPlataforma}" required="true" requiredMessage="#{bundle.EditAeropuertoRequiredMessage_costoPlataforma}"/>
+                    <h:outputLabel value="#{bundle.EditAeropuertoLabel_categoria}" for="categoria" />
+                    <h:selectOneMenu id="categoria" value="#{aeropuertoController.selected.categoria}" title="#{bundle.EditAeropuertoTitle_categoria}" >
+                        <f:selectItems value="#{categoriaAeropuertoController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditAeropuertoLabel_ciudad}" for="ciudad" />
+                    <h:selectOneMenu id="ciudad" value="#{aeropuertoController.selected.ciudad}" title="#{bundle.EditAeropuertoTitle_ciudad}" required="true" requiredMessage="#{bundle.EditAeropuertoRequiredMessage_ciudad}">
+                        <f:selectItems value="#{ciudadController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditAeropuertoLabel_ruta}" for="ruta" />
+                    <h:selectOneMenu id="ruta" value="#{aeropuertoController.selected.ruta}" title="#{bundle.EditAeropuertoTitle_ruta}" >
+                        <f:selectItems value="#{rutaController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{aeropuertoController.update}" value="#{bundle.EditAeropuertoSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditAeropuertoViewLink}"/>
+                <br />
+                <h:commandLink action="#{aeropuertoController.prepareList}" value="#{bundle.EditAeropuertoShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditAeropuertoIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

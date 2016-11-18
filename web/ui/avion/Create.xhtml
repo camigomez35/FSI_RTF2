@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateAvionTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateAvionLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{avionController.selected.id}" title="#{bundle.CreateAvionTitle_id}" required="true" requiredMessage="#{bundle.CreateAvionRequiredMessage_id}"/>
+                    <h:outputLabel value="#{bundle.CreateAvionLabel_estado}" for="estado" />
+                    <h:selectOneMenu id="estado" value="#{avionController.selected.estado}" title="#{bundle.CreateAvionTitle_estado}" required="true" requiredMessage="#{bundle.CreateAvionRequiredMessage_estado}">
+                        <f:selectItems value="#{estadoAvionController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateAvionLabel_tipoAvionId}" for="tipoAvionId" />
+                    <h:selectOneMenu id="tipoAvionId" value="#{avionController.selected.tipoAvionId}" title="#{bundle.CreateAvionTitle_tipoAvionId}" required="true" requiredMessage="#{bundle.CreateAvionRequiredMessage_tipoAvionId}">
+                        <f:selectItems value="#{tipoAvionController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{avionController.create}" value="#{bundle.CreateAvionSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{avionController.prepareList}" value="#{bundle.CreateAvionShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateAvionIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

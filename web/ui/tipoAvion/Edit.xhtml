@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditTipoAvionTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditTipoAvionLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{tipoAvionController.selected.id}" title="#{bundle.EditTipoAvionTitle_id}" required="true" requiredMessage="#{bundle.EditTipoAvionRequiredMessage_id}"/>
+                    <h:outputLabel value="#{bundle.EditTipoAvionLabel_gastoGasolina}" for="gastoGasolina" />
+                    <h:inputText id="gastoGasolina" value="#{tipoAvionController.selected.gastoGasolina}" title="#{bundle.EditTipoAvionTitle_gastoGasolina}" required="true" requiredMessage="#{bundle.EditTipoAvionRequiredMessage_gastoGasolina}"/>
+                    <h:outputLabel value="#{bundle.EditTipoAvionLabel_velocidad}" for="velocidad" />
+                    <h:inputText id="velocidad" value="#{tipoAvionController.selected.velocidad}" title="#{bundle.EditTipoAvionTitle_velocidad}" required="true" requiredMessage="#{bundle.EditTipoAvionRequiredMessage_velocidad}"/>
+                    <h:outputLabel value="#{bundle.EditTipoAvionLabel_sillasPrimeraClase}" for="sillasPrimeraClase" />
+                    <h:inputText id="sillasPrimeraClase" value="#{tipoAvionController.selected.sillasPrimeraClase}" title="#{bundle.EditTipoAvionTitle_sillasPrimeraClase}" required="true" requiredMessage="#{bundle.EditTipoAvionRequiredMessage_sillasPrimeraClase}"/>
+                    <h:outputLabel value="#{bundle.EditTipoAvionLabel_sillasClaseTurista}" for="sillasClaseTurista" />
+                    <h:inputText id="sillasClaseTurista" value="#{tipoAvionController.selected.sillasClaseTurista}" title="#{bundle.EditTipoAvionTitle_sillasClaseTurista}" required="true" requiredMessage="#{bundle.EditTipoAvionRequiredMessage_sillasClaseTurista}"/>
+                    <h:outputLabel value="#{bundle.EditTipoAvionLabel_capacidadTanque}" for="capacidadTanque" />
+                    <h:inputText id="capacidadTanque" value="#{tipoAvionController.selected.capacidadTanque}" title="#{bundle.EditTipoAvionTitle_capacidadTanque}" required="true" requiredMessage="#{bundle.EditTipoAvionRequiredMessage_capacidadTanque}"/>
+                    <h:outputLabel value="#{bundle.EditTipoAvionLabel_nombre}" for="nombre" />
+                    <h:inputText id="nombre" value="#{tipoAvionController.selected.nombre}" title="#{bundle.EditTipoAvionTitle_nombre}" required="true" requiredMessage="#{bundle.EditTipoAvionRequiredMessage_nombre}"/>
+                    <h:outputLabel value="#{bundle.EditTipoAvionLabel_configuracionVueloId}" for="configuracionVueloId" />
+                    <h:selectOneMenu id="configuracionVueloId" value="#{tipoAvionController.selected.configuracionVueloId}" title="#{bundle.EditTipoAvionTitle_configuracionVueloId}" required="true" requiredMessage="#{bundle.EditTipoAvionRequiredMessage_configuracionVueloId}">
+                        <f:selectItems value="#{configuracionVueloController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{tipoAvionController.update}" value="#{bundle.EditTipoAvionSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditTipoAvionViewLink}"/>
+                <br />
+                <h:commandLink action="#{tipoAvionController.prepareList}" value="#{bundle.EditTipoAvionShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditTipoAvionIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

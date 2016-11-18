@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateEstadoVueloTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateEstadoVueloLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{estadoVueloController.selected.id}" title="#{bundle.CreateEstadoVueloTitle_id}" required="true" requiredMessage="#{bundle.CreateEstadoVueloRequiredMessage_id}"/>
+                    <h:outputLabel value="#{bundle.CreateEstadoVueloLabel_nombre}" for="nombre" />
+                    <h:inputText id="nombre" value="#{estadoVueloController.selected.nombre}" title="#{bundle.CreateEstadoVueloTitle_nombre}" required="true" requiredMessage="#{bundle.CreateEstadoVueloRequiredMessage_nombre}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{estadoVueloController.create}" value="#{bundle.CreateEstadoVueloSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{estadoVueloController.prepareList}" value="#{bundle.CreateEstadoVueloShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateEstadoVueloIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

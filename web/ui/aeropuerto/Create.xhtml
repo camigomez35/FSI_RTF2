@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateAeropuertoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateAeropuertoLabel_codigo}" for="codigo" />
+                    <h:inputText id="codigo" value="#{aeropuertoController.selected.codigo}" title="#{bundle.CreateAeropuertoTitle_codigo}" required="true" requiredMessage="#{bundle.CreateAeropuertoRequiredMessage_codigo}"/>
+                    <h:outputLabel value="#{bundle.CreateAeropuertoLabel_nombre}" for="nombre" />
+                    <h:inputText id="nombre" value="#{aeropuertoController.selected.nombre}" title="#{bundle.CreateAeropuertoTitle_nombre}" required="true" requiredMessage="#{bundle.CreateAeropuertoRequiredMessage_nombre}"/>
+                    <h:outputLabel value="#{bundle.CreateAeropuertoLabel_impuestoAeroportuario}" for="impuestoAeroportuario" />
+                    <h:inputText id="impuestoAeroportuario" value="#{aeropuertoController.selected.impuestoAeroportuario}" title="#{bundle.CreateAeropuertoTitle_impuestoAeroportuario}" required="true" requiredMessage="#{bundle.CreateAeropuertoRequiredMessage_impuestoAeroportuario}"/>
+                    <h:outputLabel value="#{bundle.CreateAeropuertoLabel_costoPlataforma}" for="costoPlataforma" />
+                    <h:inputText id="costoPlataforma" value="#{aeropuertoController.selected.costoPlataforma}" title="#{bundle.CreateAeropuertoTitle_costoPlataforma}" required="true" requiredMessage="#{bundle.CreateAeropuertoRequiredMessage_costoPlataforma}"/>
+                    <h:outputLabel value="#{bundle.CreateAeropuertoLabel_categoria}" for="categoria" />
+                    <h:selectOneMenu id="categoria" value="#{aeropuertoController.selected.categoria}" title="#{bundle.CreateAeropuertoTitle_categoria}" >
+                        <f:selectItems value="#{categoriaAeropuertoController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateAeropuertoLabel_ciudad}" for="ciudad" />
+                    <h:selectOneMenu id="ciudad" value="#{aeropuertoController.selected.ciudad}" title="#{bundle.CreateAeropuertoTitle_ciudad}" required="true" requiredMessage="#{bundle.CreateAeropuertoRequiredMessage_ciudad}">
+                        <f:selectItems value="#{ciudadController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateAeropuertoLabel_ruta}" for="ruta" />
+                    <h:selectOneMenu id="ruta" value="#{aeropuertoController.selected.ruta}" title="#{bundle.CreateAeropuertoTitle_ruta}" >
+                        <f:selectItems value="#{rutaController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{aeropuertoController.create}" value="#{bundle.CreateAeropuertoSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{aeropuertoController.prepareList}" value="#{bundle.CreateAeropuertoShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateAeropuertoIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

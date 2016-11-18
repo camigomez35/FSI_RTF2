@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListVueloTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListVueloEmpty}" rendered="#{vueloController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{vueloController.items.rowCount > 0}">
+                    <h:outputText value="#{vueloController.pagination.pageFirstItem + 1}..#{vueloController.pagination.pageLastItem + 1}/#{vueloController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{vueloController.previous}" value="#{bundle.Previous} #{vueloController.pagination.pageSize}" rendered="#{vueloController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{vueloController.next}" value="#{bundle.Next} #{vueloController.pagination.pageSize}" rendered="#{vueloController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{vueloController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListVueloTitle_id}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.id}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListVueloTitle_fechaSalida}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.fechaSalida}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListVueloTitle_pesoEquipaje}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.pesoEquipaje}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListVueloTitle_pesoCarga}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.pesoCarga}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListVueloTitle_pasajerosEmbarcados}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.pasajerosEmbarcados}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListVueloTitle_horaLlegada}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.horaLlegada}">
+                                <f:convertDateTime pattern="HH:mm:ss" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListVueloTitle_incidentes}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.incidentes}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListVueloTitle_costoTotal}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.costoTotal}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListVueloTitle_horaSalida}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.horaSalida}">
+                                <f:convertDateTime pattern="HH:mm:ss" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListVueloTitle_fechaLlegada}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.fechaLlegada}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListVueloTitle_ruta}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.ruta}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListVueloTitle_estado}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.estado}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListVueloTitle_avion}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.avion}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{vueloController.prepareView}" value="#{bundle.ListVueloViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{vueloController.prepareEdit}" value="#{bundle.ListVueloEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{vueloController.destroy}" value="#{bundle.ListVueloDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{vueloController.prepareCreate}" value="#{bundle.ListVueloCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListVueloIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

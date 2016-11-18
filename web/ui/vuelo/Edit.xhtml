@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditVueloTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditVueloLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{vueloController.selected.id}" title="#{bundle.EditVueloTitle_id}" required="true" requiredMessage="#{bundle.EditVueloRequiredMessage_id}"/>
+                    <h:outputLabel value="#{bundle.EditVueloLabel_fechaSalida}" for="fechaSalida" />
+                    <h:inputText id="fechaSalida" value="#{vueloController.selected.fechaSalida}" title="#{bundle.EditVueloTitle_fechaSalida}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditVueloLabel_pesoEquipaje}" for="pesoEquipaje" />
+                    <h:inputText id="pesoEquipaje" value="#{vueloController.selected.pesoEquipaje}" title="#{bundle.EditVueloTitle_pesoEquipaje}" />
+                    <h:outputLabel value="#{bundle.EditVueloLabel_pesoCarga}" for="pesoCarga" />
+                    <h:inputText id="pesoCarga" value="#{vueloController.selected.pesoCarga}" title="#{bundle.EditVueloTitle_pesoCarga}" />
+                    <h:outputLabel value="#{bundle.EditVueloLabel_pasajerosEmbarcados}" for="pasajerosEmbarcados" />
+                    <h:inputText id="pasajerosEmbarcados" value="#{vueloController.selected.pasajerosEmbarcados}" title="#{bundle.EditVueloTitle_pasajerosEmbarcados}" />
+                    <h:outputLabel value="#{bundle.EditVueloLabel_horaLlegada}" for="horaLlegada" />
+                    <h:inputText id="horaLlegada" value="#{vueloController.selected.horaLlegada}" title="#{bundle.EditVueloTitle_horaLlegada}" >
+                        <f:convertDateTime pattern="HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditVueloLabel_incidentes}" for="incidentes" />
+                    <h:inputText id="incidentes" value="#{vueloController.selected.incidentes}" title="#{bundle.EditVueloTitle_incidentes}" />
+                    <h:outputLabel value="#{bundle.EditVueloLabel_costoTotal}" for="costoTotal" />
+                    <h:inputText id="costoTotal" value="#{vueloController.selected.costoTotal}" title="#{bundle.EditVueloTitle_costoTotal}" required="true" requiredMessage="#{bundle.EditVueloRequiredMessage_costoTotal}"/>
+                    <h:outputLabel value="#{bundle.EditVueloLabel_horaSalida}" for="horaSalida" />
+                    <h:inputText id="horaSalida" value="#{vueloController.selected.horaSalida}" title="#{bundle.EditVueloTitle_horaSalida}" required="true" requiredMessage="#{bundle.EditVueloRequiredMessage_horaSalida}">
+                        <f:convertDateTime pattern="HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditVueloLabel_fechaLlegada}" for="fechaLlegada" />
+                    <h:inputText id="fechaLlegada" value="#{vueloController.selected.fechaLlegada}" title="#{bundle.EditVueloTitle_fechaLlegada}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditVueloLabel_ruta}" for="ruta" />
+                    <h:selectOneMenu id="ruta" value="#{vueloController.selected.ruta}" title="#{bundle.EditVueloTitle_ruta}" >
+                        <f:selectItems value="#{rutaController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditVueloLabel_estado}" for="estado" />
+                    <h:selectOneMenu id="estado" value="#{vueloController.selected.estado}" title="#{bundle.EditVueloTitle_estado}" required="true" requiredMessage="#{bundle.EditVueloRequiredMessage_estado}">
+                        <f:selectItems value="#{estadoVueloController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditVueloLabel_avion}" for="avion" />
+                    <h:selectOneMenu id="avion" value="#{vueloController.selected.avion}" title="#{bundle.EditVueloTitle_avion}" >
+                        <f:selectItems value="#{avionController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{vueloController.update}" value="#{bundle.EditVueloSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditVueloViewLink}"/>
+                <br />
+                <h:commandLink action="#{vueloController.prepareList}" value="#{bundle.EditVueloShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditVueloIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

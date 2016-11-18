@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateRutaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateRutaLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{rutaController.selected.id}" title="#{bundle.CreateRutaTitle_id}" required="true" requiredMessage="#{bundle.CreateRutaRequiredMessage_id}"/>
+                    <h:outputLabel value="#{bundle.CreateRutaLabel_distancia}" for="distancia" />
+                    <h:inputText id="distancia" value="#{rutaController.selected.distancia}" title="#{bundle.CreateRutaTitle_distancia}" />
+                    <h:outputLabel value="#{bundle.CreateRutaLabel_tiempoPromedio}" for="tiempoPromedio" />
+                    <h:inputText id="tiempoPromedio" value="#{rutaController.selected.tiempoPromedio}" title="#{bundle.CreateRutaTitle_tiempoPromedio}" >
+                        <f:convertDateTime pattern="HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateRutaLabel_aeropuertoOrigen}" for="aeropuertoOrigen" />
+                    <h:selectOneMenu id="aeropuertoOrigen" value="#{rutaController.selected.aeropuertoOrigen}" title="#{bundle.CreateRutaTitle_aeropuertoOrigen}" required="true" requiredMessage="#{bundle.CreateRutaRequiredMessage_aeropuertoOrigen}">
+                        <f:selectItems value="#{aeropuertoController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateRutaLabel_aeropuertoDestino}" for="aeropuertoDestino" />
+                    <h:selectOneMenu id="aeropuertoDestino" value="#{rutaController.selected.aeropuertoDestino}" title="#{bundle.CreateRutaTitle_aeropuertoDestino}" required="true" requiredMessage="#{bundle.CreateRutaRequiredMessage_aeropuertoDestino}">
+                        <f:selectItems value="#{aeropuertoController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{rutaController.create}" value="#{bundle.CreateRutaSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{rutaController.prepareList}" value="#{bundle.CreateRutaShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateRutaIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
