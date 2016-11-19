@@ -27,7 +27,7 @@ Utilizamos la herramienta *phpMyAdmin* para los siguientes pasos.
 - Ingresamos las credenciales para el acceso al gestor de base datos
 ![alt text][6]
 
--  Creacmos una base de datos con el nombre *softfly*  
+-  Creamos una base de datos con el nombre *softfly*  
 ![alt text][7]
 
 - Nos dirigimos a la pestaña de *importar* y luego seleccionamos el script de la BD y presionamos en el botón *continuar*
