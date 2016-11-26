@@ -229,7 +229,6 @@ CREATE TABLE IF NOT EXISTS `softfly`.`ruta` (
   PRIMARY KEY (`id`),
   INDEX `ciudad_origen` (`aeropuerto_origen` ASC),
   INDEX `ciudad_destino` (`aeropuerto_destino` ASC),
-  UNIQUE INDEX `ciudad_origen_UNIQUE` (`aeropuerto_origen` ASC),
   CONSTRAINT `ciudad_origen_to_ruta`
     FOREIGN KEY (`aeropuerto_origen`)
     REFERENCES `softfly`.`aeropuerto` (`codigo`)
