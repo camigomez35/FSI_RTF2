@@ -147,7 +147,7 @@ DROP TABLE IF EXISTS `softfly`.`ciudad` ;
 
 CREATE TABLE IF NOT EXISTS `softfly`.`ciudad` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `nombre` INT(11) NOT NULL,
+  `nombre` VARCHAR(50) NOT NULL,
   `pais` INT(3) NULL,
   PRIMARY KEY (`id`),
   INDEX `pais` (`pais` ASC),
