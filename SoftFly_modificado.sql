@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 27-11-2016 a las 19:29:22
+-- Tiempo de generación: 27-11-2016 a las 21:16:36
 -- Versión del servidor: 5.7.9
 -- Versión de PHP: 5.6.16
 
@@ -38,7 +38,17 @@ CREATE TABLE IF NOT EXISTS `aeropuerto` (
   PRIMARY KEY (`codigo`),
   KEY `ciudad_to_aropuerto_idx` (`ciudad`),
   KEY `categoria_to_aeropuerto` (`categoria`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `aeropuerto`
+--
+
+INSERT INTO `aeropuerto` (`codigo`, `nombre`, `impuesto_aeroportuario`, `costo_plataforma`, `categoria`, `ciudad`, `costo_gasolina`) VALUES
+(1, 'José Maria Cordoba', 10600, 10000, 26, 1, 10000),
+(2, 'El Dorado', 12000, 12000, 26, 2, 13500),
+(3, 'Olaya Herrera', 6000, 6000, 5, 1, 15000),
+(4, 'Aeropuerto Internacional Miami', 30000, 12211, 10, 29, 1000);
 
 -- --------------------------------------------------------
 
@@ -55,7 +65,41 @@ CREATE TABLE IF NOT EXISTS `avion` (
   PRIMARY KEY (`id`),
   KEY `estado` (`estado`),
   KEY `fk_avion_tipo_avion1_idx` (`tipo_avion_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `avion`
+--
+
+INSERT INTO `avion` (`id`, `estado`, `tipo_avion_id`, `capacidad_carga`) VALUES
+(1, 0, 1, 300),
+(2, 0, 2, 300),
+(3, 0, 1, 200),
+(4, 0, 1, 200),
+(5, 0, 1, 200),
+(6, 0, 1, 200),
+(7, 0, 1, 200),
+(8, 0, 1, 200),
+(9, 0, 1, 200),
+(10, 0, 1, 200),
+(11, 0, 1, 200),
+(12, 0, 1, 200),
+(13, 0, 1, 200),
+(14, 0, 1, 200),
+(15, 0, 1, 200),
+(16, 0, 1, 200),
+(17, 0, 1, 200),
+(18, 0, 2, 500),
+(19, 0, 2, 500),
+(20, 0, 2, 500),
+(21, 0, 2, 500),
+(22, 0, 2, 500),
+(23, 0, 2, 500),
+(24, 0, 2, 500),
+(25, 0, 2, 500),
+(26, 0, 2, 500),
+(27, 0, 2, 500),
+(28, 0, 2, 500);
 
 -- --------------------------------------------------------
 
@@ -114,7 +158,7 @@ CREATE TABLE IF NOT EXISTS `ciudad` (
   `pais` int(3) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `pais` (`pais`)
-) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `ciudad`
@@ -148,7 +192,8 @@ INSERT INTO `ciudad` (`id`, `nombre`, `pais`) VALUES
 (25, 'Pekin', 86),
 (26, 'Shangai', 86),
 (27, 'Yamoussoukro', 225),
-(28, 'Barrancabermeja', 57);
+(28, 'Barrancabermeja', 57),
+(29, 'Miami', 1);
 
 -- --------------------------------------------------------
 
@@ -398,7 +443,25 @@ CREATE TABLE IF NOT EXISTS `puerta` (
   `tipo` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `id_sala` (`id_sala`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `puerta`
+--
+
+INSERT INTO `puerta` (`id`, `numero_puerta`, `id_sala`, `tipo`) VALUES
+(1, 1, 1, 1),
+(2, 2, 1, 1),
+(3, 1, 2, 1),
+(4, 2, 2, 2),
+(5, 1, 3, 1),
+(6, 2, 3, 2),
+(7, 1, 4, 1),
+(8, 2, 4, 2),
+(9, 1, 5, 1),
+(10, 2, 5, 2),
+(11, 1, 1, 2),
+(12, 2, 1, 2);
 
 -- --------------------------------------------------------
 
@@ -415,10 +478,19 @@ CREATE TABLE IF NOT EXISTS `ruta` (
   `tiempo_promedio` time DEFAULT NULL,
   `tipo_ruta` int(2) NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `ciudad_origen_UNIQUE` (`aeropuerto_origen`),
-  KEY `ciudad_origen` (`aeropuerto_origen`),
-  KEY `ciudad_destino` (`aeropuerto_destino`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
+  KEY `aeropuerto_origen` (`aeropuerto_origen`) USING BTREE,
+  KEY `aeropuerto_destino` (`aeropuerto_destino`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `ruta`
+--
+
+INSERT INTO `ruta` (`id`, `aeropuerto_origen`, `aeropuerto_destino`, `distancia`, `tiempo_promedio`, `tipo_ruta`) VALUES
+(1, 1, 2, 350, '01:00:00', 1),
+(2, 2, 4, 1200, '04:00:00', 2),
+(7, 1, 4, 2048, '04:00:00', 2),
+(8, 2, 3, 320, '00:30:00', 1);
 
 -- --------------------------------------------------------
 
@@ -435,7 +507,25 @@ CREATE TABLE IF NOT EXISTS `sala` (
   KEY `id` (`id`,`id_aeropuerto`),
   KEY `id_aeropuerto` (`id_aeropuerto`),
   KEY `id_aeropuerto_2` (`id_aeropuerto`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `sala`
+--
+
+INSERT INTO `sala` (`id`, `numero_sala`, `id_aeropuerto`) VALUES
+(1, 1, 1),
+(2, 2, 1),
+(3, 3, 1),
+(4, 4, 1),
+(5, 1, 2),
+(6, 2, 2),
+(7, 1, 3),
+(8, 2, 3),
+(9, 1, 4),
+(10, 2, 4),
+(11, 3, 4),
+(12, 4, 4);
 
 -- --------------------------------------------------------
 
@@ -455,7 +545,15 @@ CREATE TABLE IF NOT EXISTS `tipo_avion` (
   `configuracion_vuelo_id` int(2) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_tipo_avion_configuracion_vuelo1_idx` (`configuracion_vuelo_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `tipo_avion`
+--
+
+INSERT INTO `tipo_avion` (`id`, `gasto_gasolina`, `velocidad`, `sillas_primera_clase`, `sillas_clase_turista`, `capacidad_tanque`, `nombre`, `configuracion_vuelo_id`) VALUES
+(1, 14, 871, 10, 170, 500, 'Airbus A320-200', 1),
+(2, 14, 871, 30, 220, 500, 'Airbus A330-200', 2);
 
 -- --------------------------------------------------------
 
@@ -467,7 +565,7 @@ DROP TABLE IF EXISTS `vuelo`;
 CREATE TABLE IF NOT EXISTS `vuelo` (
   `id` int(12) NOT NULL AUTO_INCREMENT,
   `avion` int(4) DEFAULT NULL,
-  `ruta` int(12) DEFAULT NULL,
+  `ruta` int(12) NOT NULL,
   `fecha_salida` date DEFAULT NULL,
   `peso_carga` float DEFAULT NULL,
   `pasajeros_embarcados` int(3) DEFAULT NULL,
@@ -477,15 +575,22 @@ CREATE TABLE IF NOT EXISTS `vuelo` (
   `costo_total` float NOT NULL,
   `hora_salida` time NOT NULL,
   `fecha_llegada` date DEFAULT NULL,
-  `puerta_salida_id` int(11) NOT NULL,
-  `puerta_llegada_id` int(11) NOT NULL,
+  `puerta_salida_id` int(11) DEFAULT NULL,
+  `puerta_llegada_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `avion` (`avion`),
   KEY `ruta` (`ruta`),
   KEY `estado` (`estado`),
   KEY `puerta_salida_id` (`puerta_salida_id`),
   KEY `puerta_llegada_id` (`puerta_llegada_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `vuelo`
+--
+
+INSERT INTO `vuelo` (`id`, `avion`, `ruta`, `fecha_salida`, `peso_carga`, `pasajeros_embarcados`, `hora_llegada`, `estado`, `incidentes`, `costo_total`, `hora_salida`, `fecha_llegada`, `puerta_salida_id`, `puerta_llegada_id`) VALUES
+(1, 1, 1, '2016-12-01', 320, 120, '12:00:00', 0, 'Ninguno', 34000, '11:00:00', '2016-12-01', 1, 10);
 
 --
 -- Restricciones para tablas volcadas
@@ -541,8 +646,8 @@ ALTER TABLE `puerta`
 -- Filtros para la tabla `ruta`
 --
 ALTER TABLE `ruta`
-  ADD CONSTRAINT `ciudad_destino_to_ruta` FOREIGN KEY (`aeropuerto_destino`) REFERENCES `aeropuerto` (`codigo`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `ciudad_origen_to_ruta` FOREIGN KEY (`aeropuerto_origen`) REFERENCES `aeropuerto` (`codigo`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `aeropuerto_destino_to_ruta` FOREIGN KEY (`aeropuerto_destino`) REFERENCES `aeropuerto` (`codigo`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `aeropuerto_origen_to_ruta` FOREIGN KEY (`aeropuerto_origen`) REFERENCES `aeropuerto` (`codigo`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `sala`
