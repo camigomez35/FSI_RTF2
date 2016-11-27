@@ -147,7 +147,7 @@ DROP TABLE IF EXISTS `softfly`.`ciudad` ;
 
 CREATE TABLE IF NOT EXISTS `softfly`.`ciudad` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `nombre` INT(11) NOT NULL,
+  `nombre` VARCHAR(50) NOT NULL,
   `pais` INT(3) NULL,
   PRIMARY KEY (`id`),
   INDEX `pais` (`pais` ASC),
@@ -229,7 +229,6 @@ CREATE TABLE IF NOT EXISTS `softfly`.`ruta` (
   PRIMARY KEY (`id`),
   INDEX `ciudad_origen` (`aeropuerto_origen` ASC),
   INDEX `ciudad_destino` (`aeropuerto_destino` ASC),
-  UNIQUE INDEX `ciudad_origen_UNIQUE` (`aeropuerto_origen` ASC),
   CONSTRAINT `ciudad_origen_to_ruta`
     FOREIGN KEY (`aeropuerto_origen`)
     REFERENCES `softfly`.`aeropuerto` (`codigo`)
